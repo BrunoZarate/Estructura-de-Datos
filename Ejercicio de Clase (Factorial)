@@ -14,8 +14,10 @@ int Factorial (int a);
 void main()
 {
    int a,Fact;
+   do{
    cout<<"Ingrese el numero para hallar el Factorial"<<endl;
    cin>>a;
+   }while(a<0);
    Fact=Factorial(a);
    cout<<"El resultado es "<<Fact;
    getch();
