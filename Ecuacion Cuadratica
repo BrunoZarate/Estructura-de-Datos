@@ -48,6 +48,7 @@ void main()
    getch();
    cout<<endl<<"Desea continuar (s):";
    cin>>resp;
+   system("cls");
  }while(resp=='s');
 }
 
