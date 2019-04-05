@@ -76,7 +76,7 @@ void Matriz::transpuesta(int _mat1[MAX][MAX])
 int aux;
 	 for (int a=0;a<n;a++)
         for (int b=0;b<m;b++)
-		 mat[a][b]=_mat1[b][a];
+		 mat[b][a]=_mat1[a][b];
 aux=m;
 m=n;
 n=aux;
