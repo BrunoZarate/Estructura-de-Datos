@@ -1,0 +1,197 @@
+#pragma once
+#define MAX 10
+class Matriz
+{
+private:
+    int mat[MAX][MAX];
+    int m,n;
+public:
+    Matriz(int _n, int _m);
+    ~Matriz(void);
+    void cargarmat();
+    void mostrarmat();
+    void devolvermat(int _mat[MAX][MAX]);
+    void sumarmat(int _mat1[MAX][MAX],int _mat2[MAX][MAX]);
+	void transpuesta(int _mat1[MAX][MAX]);
+	bool matrizmagica(int _mat[MAX][MAX], int n);
+	void cargarEspiral (int mat[MAX][MAX],int n,int m);
+};
+
+#include "StdAfx.h"
+#include "Matriz.h"
+#include <iostream>
+#define MAX 10
+using namespace std;
+
+Matriz::Matriz(int _n,int _m)
+{
+    n=_n;
+    m=_m;
+
+}
+
+
+Matriz::~Matriz(void)
+{
+}
+
+void Matriz::cargarmat()
+{
+    for (int a=0;a<n;a++)
+        for (int b=0;b<m;b++)
+        {
+            cout<<"ingresar m["<<a<<"]["<<b<<"]=";
+            cin>>mat[a][b];
+        }
+}
+
+
+void Matriz::mostrarmat()
+{
+    for (int a=0;a<n;a++)
+        {
+            for (int b=0;b<m;b++)
+            {
+                cout<<mat[a][b];
+            }
+            cout<<endl;
+        }
+}
+
+
+void Matriz::devolvermat(int _mat[MAX][MAX])
+{
+    for (int a=0;a<n;a++)
+        for (int b=0;b<m;b++)
+        {
+            _mat[a][b]=mat[a][b];
+        }
+}
+
+void Matriz::sumarmat(int _mat1[MAX][MAX],int _mat2[MAX][MAX])
+{
+    for (int a=0;a<n;a++)
+        {for (int b=0;b<m;b++)
+			{
+		     mat[a][b]=_mat1[a][b]+_mat2[a][b];
+		    }
+		}
+}
+
+void Matriz::transpuesta(int _mat1[MAX][MAX])
+{ int aux;
+	for(int a=0;a<n;a++)
+		for (int b=0;b<m;b++)
+			mat[b][a]=_mat1[a][b];
+  aux=m;
+  m=n;
+  n=aux;
+}
+bool Matriz::matrizmagica(int mat[MAX][MAX],int n)
+{	int s=0,aux=0;
+bool k;
+	for(int i=0;i<n;i++)
+	{
+		s=s+mat[0][i];
+	}
+	for(int i=0;i<n;i++)
+	{
+		aux=0;
+		for(int j=0;j<n;j++)
+		{
+			aux=aux+mat[i][j];
+		}
+		if(aux!=s)
+		{
+			k= false;
+		}
+	}
+	for(int i=0;i<n;i++)
+	{
+		aux=0;
+		for(int j=0;j<n;j++)
+		{
+			aux=aux+mat[j][i];
+		}
+		if(aux!=s)
+		{
+			k=false;
+		}
+	}
+	aux=0;
+	for(int i=0;i<n;i++)
+	{
+		aux=aux+mat[i][i];
+	}
+	if(aux!=s)
+	{
+		k= false;
+	}
+	else 
+	{
+		k = true;
+	}
+	
+	return(k);
+}
+void Matriz::cargarEspiral (int mat[MAX][MAX],int n,int m)
+{
+	int a,i,c=1;
+	a=0;
+	for(a=0;a<n/2;a++){
+		for(i=a;i<n-a;i++){
+			mat[a][i]=c++;
+		}
+		for(i=a+1;i<n-a;i++){
+			mat[i][n-a-1]=c++;
+		}
+		for(i=n-a-2;i>=a;i--){
+			mat[n-a-1][i]=c++;
+		}
+		for(i=n-a-2;i>a;i--){
+			mat[i][a]=c++;
+		}
+	}
+	if(n%2!=0)
+		mat[(n-1)/2][(n-1)/2]=c;
+}
+
+					break;
+				case 2:
+					M1.mostrarmat();
+					break;
+				case 3:
+					M1.devolvermat(mat1);
+					M1.transpuesta(mat1);
+					break;
+				case 4:
+					M1.devolvermat(mat1);
+					M2.cargarmat();
+					M2.devolvermat(mat2);
+					M1.sumarmat(mat1,mat2);
+				case 5:
+					break;
+				case 6:
+					break;
+				case 7:
+					respuesta=M1.matrizmagica(mat1,n1);
+					if(respuesta==true)cout<<"Es magica";
+					else cout<<"No es magica";
+					break;
+				case 8:
+					M2.cargarmat();
+					M2.devolvermat(mat2);
+					M2.cargarEspiral(mat2,n1,m1);
+					break;
+				case 9:
+					break;
+				case 0:
+					break;
+			}
+		}while(opcion != 0);
+
+
+
+
+getch();
+}
