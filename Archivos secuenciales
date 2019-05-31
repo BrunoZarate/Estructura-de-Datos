@@ -1,0 +1,31 @@
+// Archivo ejemplo.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <stdio.h>
+#include "stdlib.h"
+#include <string>
+#include "conio.h"
+#include <iostream>
+using namespace std;
+void main()
+{
+char cadena[50];
+	FILE *Ejemplo3;
+	Ejemplo3 =fopen ("Ejemplo3", "a+");
+	if (Ejemplo3==NULL)       
+	{
+	cout << "\n\r No se puede abrir el archivo ";           
+	getch();
+	return;  
+	}
+	cin.getline(cadena,50);
+	fputs(cadena, Ejemplo3);
+	cout<<"Texto grabado con exito"<<endl;
+	fgets(cadena,50,Ejemplo3);
+	fprintf (Ejemplo3,"50",cadena);
+	rename ("Ejemplo3","Ejemplo fin");
+	rewind(Ejemplo3);
+	
+getch();
+}
